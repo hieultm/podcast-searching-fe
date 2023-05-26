@@ -1,6 +1,6 @@
 import { Box, CircularProgress, Divider } from '@mui/material';
 import Container from '@mui/material/Container';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useLocalstorage } from '../../../hooks/useLocalstorage';
@@ -32,13 +32,15 @@ const UserProfiles = () => {
 
     const { data } = myUser;
 
-    const hanleFollowUser = async () => {
+    const hanleFollowUser = useCallback(async () => {
         await dispatch(userFollow(data._id, params));
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const hanleUnFollowUser = async () => {
+    const hanleUnFollowUser = useCallback(async () => {
         await dispatch(userUnFollow(data._id, params));
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         dispatch(getOtherUserProfile(data._id, params));

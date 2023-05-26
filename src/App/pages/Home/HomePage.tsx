@@ -4,7 +4,7 @@ import MainHome from '../../components/home/main';
 
 import { useDispatch } from 'react-redux';
 
-import { getPodcastByUserFollowing } from '../../redux/actions/podcastActions';
+import { getPodcastByUserFollowing, getRecommendPodcast } from '../../redux/actions/podcastActions';
 
 import ClientLayout from '../../../Layouts/ClientLayout';
 import { getProfile } from '../../redux/actions/userActions';
@@ -16,6 +16,7 @@ const HomePage = () => {
     const { data } = useLocalstorage();
     useEffect(() => {
         dispatch(getPodcastByUserFollowing());
+        dispatch(getRecommendPodcast());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

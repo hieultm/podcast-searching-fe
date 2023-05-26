@@ -62,7 +62,7 @@ const ResultPodcast = () => {
                                         <Typography>The podcast does not exist.</Typography>
                                     </Box>
                                 ) : podcastDatas?.podcastData.length > 0 ? (
-                                    podcastDatas?.podcastData.map(({ user, _id, uploadDate, caption, background }: podcastInfo) => (
+                                    podcastDatas?.podcastData.map(({ user, _id, uploadDate, caption, background, likes }: podcastInfo) => (
                                         <Box
                                             component="article"
                                             sx={{
@@ -102,6 +102,7 @@ const ResultPodcast = () => {
                                                     uploadDate={uploadDate}
                                                     avatar={user.avatar}
                                                     caption={caption}
+                                                    likeCount={likes.length}
                                                 />
                                             </Box>
                                         </Box>

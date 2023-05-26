@@ -45,7 +45,7 @@ const MainPost = () => {
                             <Typography>There are no posts yet</Typography>
                         </Box>
                     ) : podcastInfo ? (
-                        podcastInfo.map(({ user, _id, uploadDate, caption, background }: podcastInfo) => (
+                        podcastInfo.map(({ user, _id, uploadDate, caption, background, likes }: podcastInfo) => (
                             <Box
                                 component="article"
                                 sx={{
@@ -80,7 +80,13 @@ const MainPost = () => {
                                     onClick={() => moveToDetailPodcast(_id)}
                                 >
                                     <BackgrounPost background={background} />
-                                    <HeaderPost username={user.username} uploadDate={uploadDate} avatar={user.avatar} caption={caption} />
+                                    <HeaderPost
+                                        username={user.username}
+                                        uploadDate={uploadDate}
+                                        avatar={user.avatar}
+                                        caption={caption}
+                                        likeCount={likes.length}
+                                    />
                                 </Box>
                             </Box>
                         ))

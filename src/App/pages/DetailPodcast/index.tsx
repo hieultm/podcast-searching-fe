@@ -4,7 +4,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Container, CircularProgress, Typography, Avatar, Collapse, CardContent } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getDetailPodcast } from '../../redux/actions/podcastActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { DetailPodcastState } from '../../redux/reducers/podcastReducers';
@@ -33,6 +33,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const DetailPodcast = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const path = useLocation();
     const params = path.pathname.replace('/podcast/', '').trim();
     const detailPodcast = useSelector<RootState, DetailPodcastState>((state) => state.getDetailPodcast);
@@ -173,6 +174,7 @@ const DetailPodcast = () => {
                                                         sx={{
                                                             cursor: 'pointer'
                                                         }}
+                                                        onClick={() => navigate(`/user/${dataPodcast.user._id}`)}
                                                     >
                                                         <Avatar sx={{ width: 40, height: 40 }} src={dataPodcast.user.avatar} />
                                                     </Box>
@@ -184,6 +186,7 @@ const DetailPodcast = () => {
                                                             cursor: 'pointer',
                                                             width: '50%'
                                                         }}
+                                                        onClick={() => navigate(`/user/${dataPodcast.user._id}`)}
                                                     >
                                                         <Typography
                                                             sx={{

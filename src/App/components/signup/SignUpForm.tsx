@@ -1,6 +1,6 @@
 import AuthInput from '../../shared/AuthInput';
 import PasswordInput from '../../shared/PasswordInput';
-import { Box, Button } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 // form
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -15,12 +15,15 @@ import { RootState } from '../../redux/store';
 
 import { registerUser } from '../../redux/actions/userActions';
 import { useNavigate } from 'react-router-dom';
+import SelectFieldSignup from '../../shared/SelectFieldSignup';
 
 interface IFormInputs {
     username: string;
     email: string;
     password: string;
     confirmPassword: string;
+    secretQuestion: string;
+    secretAnswer: string;
 }
 
 const schema = yup.object({
@@ -36,7 +39,9 @@ const schema = yup.object({
     confirmPassword: yup
         .string()
         .required('Confirm Password is required')
-        .oneOf([yup.ref('password')], 'Passwords must match')
+        .oneOf([yup.ref('password')], 'Passwords must match'),
+    secretQuestion: yup.string().required('This field is required'),
+    secretAnswer: yup.string().required('This field is required')
 });
 
 const SignUpForm = () => {
@@ -53,15 +58,17 @@ const SignUpForm = () => {
     });
 
     const onHandleSubmit: SubmitHandler<IFormInputs> = (data: any) => {
-        const { username, email, password } = data;
+        const { username, email, password, secretQuestion, secretAnswer } = data;
 
-        dispatch(registerUser(username, email, password));
+        dispatch(registerUser(username, email, password, secretQuestion, secretAnswer));
 
         reset({
             username: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            secretQuestion: '',
+            secretAnswer: ''
         });
     };
 
@@ -93,6 +100,29 @@ const SignUpForm = () => {
                 <AuthInput label="Username" type="text" id="username" name="username" errors={errors} register={register} />
                 <PasswordInput label="Password" id="password" name="password" errors={errors} register={register} />
                 <PasswordInput label="Confirm Password" id="confirmPassword" name="confirmPassword" errors={errors} register={register} />
+                <SelectFieldSignup id="secretQuestion" name="secretQuestion" errors={errors} register={register} />
+
+                <Box sx={{ marginBottom: '8px' }}>
+                    <TextField
+                        label="Secret Answer"
+                        variant="outlined"
+                        id="secretAnswer"
+                        {...register('secretAnswer')}
+                        sx={{
+                            width: ' 100%'
+                        }}
+                    />
+                    <Typography
+                        sx={{
+                            color: 'red',
+                            marginBottom: '8px'
+                        }}
+                        variant="caption"
+                        component="span"
+                    >
+                        {errors['secretAnswer']?.message}
+                    </Typography>
+                </Box>
             </Box>
             <Box
                 sx={{

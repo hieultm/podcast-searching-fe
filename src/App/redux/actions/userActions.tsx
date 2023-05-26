@@ -32,7 +32,7 @@ import {
 } from '../constants/userConstants';
 
 export const registerUser =
-    (username: string, email: string, password: string): any =>
+    (username: string, email: string, password: string, secretQuestion: string, secretAnswer: string): any =>
     async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>): Promise<void> => {
         try {
             dispatch({
@@ -50,7 +50,9 @@ export const registerUser =
                 {
                     username,
                     email,
-                    password
+                    password,
+                    secretQuestion,
+                    secretAnswer
                 },
                 config
             );

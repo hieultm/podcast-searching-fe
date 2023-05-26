@@ -15,7 +15,10 @@ import {
     GET_CONTENT_PODCAST_FAILED,
     DELETE_PODCAST_REQUEST,
     DELETE_PODCAST_SUCCESS,
-    DELETE_PODCAST_FAILED
+    DELETE_PODCAST_FAILED,
+    GET_RECOMMEND_PODCAST_REQUEST,
+    GET_RECOMMEND_PODCAST_SUCCESS,
+    GET_RECOMMEND_PODCAST_FAILED
 } from '../constants/podcastConstants';
 import { userInfo } from './userReducers';
 import { followCount } from './postReducers';
@@ -38,11 +41,9 @@ export interface podcastInfo {
     caption: string;
     uploadDate: Date;
     user: userInfo;
+    likes: followCount[] | [];
 }
 
-// export interface dataPodcasts {
-//     dataPodcast: podcastInfo[];
-// }
 export interface podcastState {
     podcastInfo: podcastInfo;
     isFetching?: boolean;
@@ -55,6 +56,27 @@ export interface DetailPodcastState {
 }
 export interface PodcastDatas {
     podcastData: dataPodcast[];
+}
+
+export interface dataRecommendPodcast {
+    [x: string]: any;
+    _id: string;
+    audio: any;
+    caption: string;
+    uploadDate: Date;
+    user: userInfo;
+    background: string;
+    content: string;
+    likes: number;
+}
+export interface RecommendPodcastDatas {
+    podcastData: dataRecommendPodcast;
+}
+
+export interface RecommendPodcatState {
+    podcastDatas: RecommendPodcastDatas;
+    isFetching?: boolean;
+    error?: boolean;
 }
 export interface ContentPodcastState {
     podcastDatas: PodcastDatas;
@@ -122,6 +144,29 @@ export const getDetailPodcastReducer = (state: DetailPodcastState, action: AnyAc
                 error: false
             };
         case GET_DETAIL_PODCAST_FAILED:
+            return {
+                isFetching: false,
+                error: true
+            };
+        default:
+            return { ...state };
+    }
+};
+
+export const getRecommendPodcastReducer = (state: RecommendPodcatState, action: AnyAction) => {
+    switch (action.type) {
+        case GET_RECOMMEND_PODCAST_REQUEST:
+            return {
+                isFetching: true,
+                error: false
+            };
+        case GET_RECOMMEND_PODCAST_SUCCESS:
+            return {
+                podcastDatas: action.payload,
+                isFetching: false,
+                error: false
+            };
+        case GET_RECOMMEND_PODCAST_FAILED:
             return {
                 isFetching: false,
                 error: true

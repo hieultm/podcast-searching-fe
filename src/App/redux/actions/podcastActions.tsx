@@ -17,7 +17,10 @@ import {
     GET_CONTENT_PODCAST_FAILED,
     DELETE_PODCAST_REQUEST,
     DELETE_PODCAST_SUCCESS,
-    DELETE_PODCAST_FAILED
+    DELETE_PODCAST_FAILED,
+    GET_RECOMMEND_PODCAST_REQUEST,
+    GET_RECOMMEND_PODCAST_SUCCESS,
+    GET_RECOMMEND_PODCAST_FAILED
 } from '../constants/podcastConstants';
 
 export const getAllPodcast =
@@ -97,6 +100,26 @@ export const getContentPodcast =
         } catch (e) {
             dispatch({
                 type: GET_CONTENT_PODCAST_FAILED,
+                payload: e
+            });
+        }
+    };
+
+export const getRecommendPodcast =
+    (): any =>
+    async (dispatch: ThunkDispatch<RootState, unknown, AnyAction>): Promise<void> => {
+        try {
+            dispatch({
+                type: GET_RECOMMEND_PODCAST_REQUEST
+            });
+            const { data } = await axios.get(`/data/recommend_podcast`);
+            dispatch({
+                type: GET_RECOMMEND_PODCAST_SUCCESS,
+                payload: data
+            });
+        } catch (e) {
+            dispatch({
+                type: GET_RECOMMEND_PODCAST_FAILED,
                 payload: e
             });
         }

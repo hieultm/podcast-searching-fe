@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
 import MainPost from './MainPost';
 import SearchPost from './SearchPost';
+import RecommendPost from '../RecommendPost';
 
 const MainHome = () => {
     return (
@@ -12,6 +13,7 @@ const MainHome = () => {
                 component="section"
             >
                 <SearchPost />
+                <RecommendPost />
                 <MainPost />
             </Box>
         </Container>

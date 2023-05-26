@@ -17,7 +17,8 @@ import {
     getAllPodcastReducer,
     getContentPodcastReducer,
     getDetailPodcastReducer,
-    getPostcastByUserFollowingReducer
+    getPostcastByUserFollowingReducer,
+    getRecommendPodcastReducer
 } from './reducers/podcastReducers';
 import {
     getTotalLikeCountPostReducer,
@@ -27,6 +28,7 @@ import {
     userStatusLikeReducer,
     userUnFollowReducer
 } from './reducers/postReducers';
+import { getConfirmationUserReducer } from './reducers/authReducers';
 
 const reducers = combineReducers({
     userRegister: userRegisterReducer,
@@ -48,7 +50,9 @@ const reducers = combineReducers({
     getDetailPodcast: getDetailPodcastReducer,
     getUserCommentPost: getUserCommentPostReducer,
     getContentPodcast: getContentPodcastReducer,
-    getTotalLikeCountPost: getTotalLikeCountPostReducer
+    getTotalLikeCountPost: getTotalLikeCountPostReducer,
+    getConfirmationUser: getConfirmationUserReducer,
+    getRecommendPodcast: getRecommendPodcastReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!) : null;

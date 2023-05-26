@@ -9,7 +9,9 @@ const SearchPost = () => {
     const navigate = useNavigate();
     const [searchText, setSearchText] = useState('');
     const onSearchPodcast = () => {
-        navigate(`/result/${searchText}`);
+        if (searchText) {
+            navigate(`/result/${searchText}`);
+        }
     };
 
     return (

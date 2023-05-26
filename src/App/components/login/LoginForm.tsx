@@ -68,24 +68,24 @@ const LoginForm = () => {
         }
     }, [userInfo, navigate]);
 
-    const handleLoginGG = async (googleData: any) => {
-        console.log(googleData);
-        // const { data } = await axios({
-        //     method: 'POST',
-        //     url: '/auth/google',
-        //     data: { tokenId: googleData.tokenId },
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // });
+    // const handleLoginGG = async (googleData: any) => {
+    //     console.log(googleData);
+    //     // const { data } = await axios({
+    //     //     method: 'POST',
+    //     //     url: '/auth/google',
+    //     //     data: { tokenId: googleData.tokenId },
+    //     //     headers: {
+    //     //         'Content-Type': 'application/json'
+    //     //     }
+    //     // });
 
-        // localStorage.setItem('userInfo', JSON.stringify(data));
-        // window.location.href = '/manage';
-    };
+    //     // localStorage.setItem('userInfo', JSON.stringify(data));
+    //     // window.location.href = '/manage';
+    // };
 
-    const handleFailureGG = (res: any) => {
-        console.log(res);
-    };
+    // const handleFailureGG = (res: any) => {
+    //     console.log(res);
+    // };
 
     return (
         <form
@@ -162,7 +162,7 @@ const LoginForm = () => {
                     Email or Password are incorrect! Please try again
                 </Typography>
             )}
-            <Box
+            {/* <Box
                 sx={{
                     width: '80%',
                     marginTop: '12px',
@@ -206,15 +206,17 @@ const LoginForm = () => {
                     cookiePolicy={'single_host_origin'}
                     render={(renderProps) => <GoogleButton onClick={renderProps.onClick} />}
                 />
-            </Box>
+            </Box> */}
 
             <Typography
                 variant="body2"
                 sx={{
                     fontWeight: '400',
                     marginBottom: '12px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    marginTop: '30px'
                 }}
+                onClick={() => navigate('/ForgotPassword')}
             >
                 Forgot password?
             </Typography>

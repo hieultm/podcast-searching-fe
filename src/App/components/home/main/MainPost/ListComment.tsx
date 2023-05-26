@@ -3,12 +3,15 @@ import React, { FC } from 'react';
 import colors from '../../../../../styles/colors';
 import moment from 'moment';
 import { UserComment } from '../../../../redux/reducers/postReducers';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     listUserComment: UserComment[];
 }
 
 const ListComment: FC<Props> = ({ listUserComment }) => {
+    const navigate = useNavigate();
+    const currentTime = moment();
     return (
         <Box
             sx={{
@@ -18,7 +21,12 @@ const ListComment: FC<Props> = ({ listUserComment }) => {
         >
             {listUserComment.map(({ user, text, date }) => (
                 <Box key={text} sx={{ display: 'flex', marginBottom: '24px', gap: '16px' }}>
-                    <Box>
+                    <Box
+                        sx={{
+                            cursor: 'pointer'
+                        }}
+                        onClick={() => navigate(`/user/${user._id}`)}
+                    >
                         <Avatar src={user.avatar} />
                     </Box>
                     <Box
@@ -45,6 +53,7 @@ const ListComment: FC<Props> = ({ listUserComment }) => {
                                         opacity: 0.5
                                     }
                                 }}
+                                onClick={() => navigate(`/user/${user._id}`)}
                             >
                                 {user.username}
                             </Typography>
@@ -54,7 +63,7 @@ const ListComment: FC<Props> = ({ listUserComment }) => {
                                     color: `${colors.secondaryText}`
                                 }}
                             >
-                                {moment(date).startOf('hour').fromNow()}
+                                {moment(date).from(currentTime)}
                             </Typography>
                         </Box>
                         <Typography

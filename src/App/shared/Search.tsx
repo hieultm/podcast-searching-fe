@@ -7,6 +7,7 @@ import { searchUser } from '../redux/actions/userActions';
 import { RootState } from '../redux/store';
 import { listUserByFilter } from '../redux/reducers/userReducers';
 import { useNavigate } from 'react-router-dom';
+import { useLocalstorage } from '../../hooks/useLocalstorage';
 
 interface Props {
     show: boolean;
@@ -16,7 +17,7 @@ const Search: FC<Props> = ({ show }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const listUserByFilter = useSelector<RootState, listUserByFilter>((state) => state.searchUser);
-
+    const { data } = useLocalstorage();
     const { userList } = listUserByFilter;
 
     const handleSetSearchText = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -24,8 +25,12 @@ const Search: FC<Props> = ({ show }) => {
         dispatch(searchUser(keyword));
     };
 
-    const handleSelectUser = (userId: string, username: string) => {
-        navigate(`/user/${userId}`);
+    const handleSelectUser = (userId: string) => {
+        if (userId === data._id) {
+            navigate(`/profile/${userId}`);
+        } else {
+            navigate(`/user/${userId}`);
+        }
     };
 
     return (
@@ -184,7 +189,7 @@ const Search: FC<Props> = ({ show }) => {
                                                     cursor: 'pointer'
                                                 }}
                                                 component="div"
-                                                onClick={() => handleSelectUser(item._id, item.username)}
+                                                onClick={() => handleSelectUser(item._id)}
                                             >
                                                 <Box
                                                     sx={{

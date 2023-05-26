@@ -66,7 +66,7 @@ const SideBarPage = () => {
     const { data } = useLocalstorage();
 
     const moveToProfile = () => {
-        navigate(`/${data?.username?.replace(/\s+/g, '').toLocaleLowerCase()}`);
+        navigate(`/profile/${data?.username?.replace(/\s+/g, '').toLocaleLowerCase()}`);
     };
     useEffect(() => {
         dispatch(getProfile(data?._id));
@@ -80,9 +80,6 @@ const SideBarPage = () => {
                 break;
             case 'Search':
                 setShowSearch(!showSearch);
-                break;
-            case 'Podcasts':
-                console.log('search-podcast');
                 break;
             case 'Create':
                 dispatch(onCreatePost(!statusCreate));

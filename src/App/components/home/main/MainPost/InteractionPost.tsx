@@ -2,7 +2,7 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import colors from '../../../../../styles/colors';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTotalLikeCountPost, userLikePost, userStatusLike, userUnlikePost } from '../../../../redux/actions/postActions';
 import { RootState } from '../../../../redux/store';
@@ -18,23 +18,19 @@ const InteractionPost: FC<Props> = ({ postId, likeId }) => {
     const dataStatusLike = useSelector<RootState, typeStatusLikePost>((state) => state.userStatusLike);
     const { statusLike } = dataStatusLike;
 
-    const [statusLikePost, setStatusLikePost] = useState(statusLike ? statusLike?.isLike : false);
-
     const totalLikeCountData = useSelector<RootState, totalLikeCountState>((state) => state.getTotalLikeCountPost);
     const { totalLikeCount, likeCountFetching } = totalLikeCountData;
 
-    console.log(statusLike?.isLike, statusLikePost);
-
     const handleLikePost = useCallback(async () => {
         await dispatch(userLikePost(likeId, postId));
-        setStatusLikePost(true);
         dispatch(getTotalLikeCountPost(postId));
+        dispatch(userStatusLike(likeId, postId));
     }, [dispatch, likeId, postId]);
 
     const handleUnlikePost = useCallback(async () => {
         await dispatch(userUnlikePost(likeId, postId));
-        setStatusLikePost(false);
         dispatch(getTotalLikeCountPost(postId));
+        dispatch(userStatusLike(likeId, postId));
     }, [dispatch, likeId, postId]);
 
     useEffect(() => {
@@ -45,8 +41,6 @@ const InteractionPost: FC<Props> = ({ postId, likeId }) => {
 
     return (
         <>
-            {/* cmt, like ... */}
-
             <Box
                 sx={{
                     display: 'flex',
@@ -54,8 +48,6 @@ const InteractionPost: FC<Props> = ({ postId, likeId }) => {
                     width: '100%'
                 }}
             >
-                {/* Icon */}
-
                 <Box
                     component="section"
                     sx={{
@@ -65,7 +57,7 @@ const InteractionPost: FC<Props> = ({ postId, likeId }) => {
                         justifyContent: 'flex-end'
                     }}
                 >
-                    {statusLikePost ? (
+                    {statusLike?.isLike ? (
                         <Box
                             sx={{
                                 padding: '8px',
@@ -118,20 +110,6 @@ const InteractionPost: FC<Props> = ({ postId, likeId }) => {
                             </Typography>
                         )}
                     </Box>
-                </Box>
-
-                {/* like count */}
-
-                {/* comment count */}
-
-                <Box
-                    component="section"
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column'
-                    }}
-                >
-                    {/* list comment */}
                 </Box>
             </Box>
         </>

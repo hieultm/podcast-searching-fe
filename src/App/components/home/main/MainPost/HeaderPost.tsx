@@ -9,10 +9,12 @@ interface Props {
     avatar: string | undefined;
     uploadDate: any;
     caption: string;
+    likeCount: number;
 }
 
-const HeaderPost: FC<Props> = ({ username, avatar, uploadDate, caption }) => {
-    const time = moment(uploadDate).startOf('hour').fromNow();
+const HeaderPost: FC<Props> = ({ username, avatar, uploadDate, caption, likeCount }) => {
+    const currentTime = moment();
+    const relativeTimeString = moment(uploadDate).from(currentTime);
 
     return (
         <>
@@ -100,7 +102,7 @@ const HeaderPost: FC<Props> = ({ username, avatar, uploadDate, caption }) => {
                                             color: `${colors.secondaryText}`
                                         }}
                                     >
-                                        Like
+                                        {likeCount > 1 ? `${likeCount} likes` : `${likeCount} like`}
                                     </Typography>
                                     <Typography
                                         component="span"
@@ -118,7 +120,7 @@ const HeaderPost: FC<Props> = ({ username, avatar, uploadDate, caption }) => {
                                             color: `${colors.secondaryText}`
                                         }}
                                     >
-                                        {time}
+                                        {relativeTimeString}
                                     </Typography>
                                 </Box>
                             </Box>

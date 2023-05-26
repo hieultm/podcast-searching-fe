@@ -8,22 +8,9 @@ import EditProfile from '../pages/profile/EditProfile';
 import UserProfiles from '../pages/UserProfiles';
 import DetailPodcast from '../pages/DetailPodcast';
 import ResultPodcast from '../pages/ResultPodcast';
+import PageNotFound from '../pages/PageNotFound';
 
 export const routeClient: RouteObject[] = [
-    // {
-    //   element: <MenuLayout />,
-    //   children: [
-    //     {
-    //       path: "corp-list",
-    //       element: <CorpList />
-    //     },
-    //     {
-    //       path: "corp-list/:id",
-    //       element: <DetailCorp />
-    //     }
-    //   ]
-    // },
-
     {
         element: <HomePage />,
         path: '/'
@@ -42,7 +29,7 @@ export const routeClient: RouteObject[] = [
     },
     {
         element: <UserProfile />,
-        path: '/:id/'
+        path: '/profile/:id/'
     },
     {
         element: <EditProfile />,
@@ -59,5 +46,9 @@ export const routeClient: RouteObject[] = [
     {
         element: <ResultPodcast />,
         path: '/result/:id'
+    },
+    {
+        element: <PageNotFound />,
+        path: '*'
     }
 ];
