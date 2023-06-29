@@ -48,6 +48,7 @@ const SignUpForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userLogin = useSelector<RootState, userState>((state) => state.userLogin);
+
     const {
         register,
         handleSubmit,
@@ -57,10 +58,10 @@ const SignUpForm = () => {
         resolver: yupResolver(schema)
     });
 
-    const onHandleSubmit: SubmitHandler<IFormInputs> = (data: any) => {
+    const onHandleSubmit: SubmitHandler<IFormInputs> = async (data: any) => {
         const { username, email, password, secretQuestion, secretAnswer } = data;
 
-        dispatch(registerUser(username, email, password, secretQuestion, secretAnswer));
+        await dispatch(registerUser(username, email, password, secretQuestion, secretAnswer));
 
         reset({
             username: '',

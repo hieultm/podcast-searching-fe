@@ -85,10 +85,10 @@ const HeaderPost: FC<Props> = ({ username, avatar, uploadDate, caption, likeCoun
                                         sx={{
                                             fontWeight: 600,
                                             cursor: 'pointer',
-                                            color: `${colors.secondaryText}`,
-                                            ':hover': {
-                                                color: `${colors.normalText}`
-                                            }
+                                            color: `${colors.secondaryText}`
+                                            // ':hover': {
+                                            //     color: `${colors.normalText}`
+                                            // }
                                         }}
                                     >
                                         {username}

@@ -3,9 +3,12 @@ import { Box, Typography, Button } from '@mui/material';
 
 import PrimaryTextField from '../../shared/PrimaryTextField';
 import colors from '../../../styles/colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProfile, updateProfile } from '../../redux/actions/userActions';
-import { AlertDialog } from './FormDialog';
+import { RootState } from '../../redux/store';
+import { userState } from '../../redux/reducers/userReducers';
+import { toast } from 'react-toastify';
+import { TOAST_CONFIG } from '../../utils/toastConfig';
 
 interface Props {
     username: string | undefined;
@@ -18,11 +21,8 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
     const [avatar, setAvatar] = useState<File | null>(null);
     const [avtName, setAvtName] = useState('No file chosen!');
     const [usernameText, setUsernameText] = useState('');
-    const [open, setOpen] = useState(false);
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const { error } = useSelector<RootState, userState>((state) => state.updateProfile);
 
     const handleChooseImg = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
@@ -35,11 +35,16 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
     const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsernameText(e.target.value);
     };
+
     const handleUpdateProfile = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(updateProfile(usernameText, avatar as File));
+        await dispatch(updateProfile(usernameText, avatar as File));
         await dispatch(getProfile(userId));
-        setOpen(true);
+        if (error) {
+            toast.error('Username already exist', TOAST_CONFIG);
+            return;
+        }
+        toast.success('Update Profile Success', TOAST_CONFIG);
     };
 
     return (
@@ -240,8 +245,6 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                     </Button>
                 </Box>
             </Box>
-
-            <AlertDialog open={open} handleClose={handleClose} />
         </>
     );
 };

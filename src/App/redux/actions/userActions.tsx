@@ -129,18 +129,8 @@ export const uploadFileUser =
                 }
             };
             // fetch data from Backend
-            // const { data } = await axios.post(
-            //     '/data/uploadSingleFile',
-            //     {
-            //         file,
-            //         background,
-            //         caption,
-            //         userId
-            //     },
-            //     config
-            // );
             const { data } = await axios.post(
-                '/data/uploadFileToPythonFile',
+                '/data/uploadSingleFile',
                 {
                     file,
                     background,
@@ -149,6 +139,16 @@ export const uploadFileUser =
                 },
                 config
             );
+            // const { data } = await axios.post(
+            //     '/data/uploadFileToPythonFile',
+            //     {
+            //         file,
+            //         background,
+            //         caption,
+            //         userId
+            //     },
+            //     config
+            // );
             dispatch({
                 type: USER_UPLOADFILE_SUCCESS,
                 payload: data

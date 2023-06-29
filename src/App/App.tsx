@@ -6,6 +6,10 @@ import theme from './Theme/MyTheme';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 import { userState } from './redux/reducers/userReducers';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
     const userLogin = useSelector<RootState, userState>((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -19,6 +23,18 @@ const App = () => {
                         : routeDefault.map((route) => <Route key={route.path} path={route.path as string} element={route.element} />)}
                 </Routes>
             </Router>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
         </ThemeProvider>
     );
 };

@@ -61,7 +61,7 @@ const SearchPost = () => {
                         }
                     }}
                     value={searchText}
-                    placeholder="Search Podcast"
+                    placeholder="Search Podcast with content"
                     onChange={(e) => setSearchText(e.target.value)}
                 />
                 <Box

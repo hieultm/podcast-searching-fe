@@ -34,11 +34,17 @@ const UserProfiles = () => {
 
     const hanleFollowUser = useCallback(async () => {
         await dispatch(userFollow(data._id, params));
+        dispatch(getOtherUserProfile(data._id, params));
+        dispatch(getRelationship(data._id, params));
+        dispatch(getAllPodcast(params));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const hanleUnFollowUser = useCallback(async () => {
         await dispatch(userUnFollow(data._id, params));
+        dispatch(getOtherUserProfile(data._id, params));
+        dispatch(getRelationship(data._id, params));
+        dispatch(getAllPodcast(params));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -47,7 +53,7 @@ const UserProfiles = () => {
         dispatch(getRelationship(data._id, params));
         dispatch(getAllPodcast(params));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [params, dataFollowUserProfile.followFetching, dataUnfollowUserProfile.unFollowFetching]);
+    }, []);
 
     const listButton: contentButton[] = [{ label: 'Follow', handleEvent: () => hanleFollowUser() }];
 

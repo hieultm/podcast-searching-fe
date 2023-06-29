@@ -4,6 +4,7 @@ import colors from '../../../../../styles/colors';
 import moment from 'moment';
 import { UserComment } from '../../../../redux/reducers/postReducers';
 import { useNavigate } from 'react-router-dom';
+import { useLocalstorage } from '../../../../../hooks/useLocalstorage';
 
 interface Props {
     listUserComment: UserComment[];
@@ -12,6 +13,15 @@ interface Props {
 const ListComment: FC<Props> = ({ listUserComment }) => {
     const navigate = useNavigate();
     const currentTime = moment();
+    const { data } = useLocalstorage();
+
+    const goToProfileUser = (idUser: string) => {
+        if (idUser === data._id) {
+            navigate(`/profile/${idUser}`);
+        } else {
+            navigate(`/user/${idUser}`);
+        }
+    };
     return (
         <Box
             sx={{
@@ -53,7 +63,7 @@ const ListComment: FC<Props> = ({ listUserComment }) => {
                                         opacity: 0.5
                                     }
                                 }}
-                                onClick={() => navigate(`/user/${user._id}`)}
+                                onClick={() => goToProfileUser(user._id)}
                             >
                                 {user.username}
                             </Typography>

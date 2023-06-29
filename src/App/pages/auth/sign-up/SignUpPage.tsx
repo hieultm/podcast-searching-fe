@@ -4,9 +4,15 @@ import { Logo } from '../../../utils/dataImg';
 
 import SignUpForm from '../../../components/signup/SignUpForm';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
+import { userState } from '../../../redux/reducers/userReducers';
+import Notification from '../../../shared/Notification';
 
 const SignUpPage = () => {
     const navigate = useNavigate();
+    const { userInfo, error } = useSelector<RootState, userState>((state) => state.userRegister);
+
     return (
         <section style={{ backgroundColor: `${colors.backgroundLogin}`, paddingTop: '20px' }}>
             <Container
@@ -89,6 +95,8 @@ const SignUpPage = () => {
                     </Typography>
                 </Box>
             </Container>
+            {error && <Notification message="Account registration failed" type="error" />}
+            {userInfo && <Notification message="Successful account registration" type="success" />}
         </section>
     );
 };

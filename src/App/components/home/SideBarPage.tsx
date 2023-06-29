@@ -3,8 +3,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import ShowMoreSidebar from './ShowMoreSidebar';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 import { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { onCreatePost } from '../../redux/actions/eventListenerAction';
 import { createPostStatus } from '../../redux/reducers/eventListenerReducers';
 import { useLocalstorage } from '../../../hooks/useLocalstorage';
-import { getProfile } from '../../redux/actions/userActions';
+import { getProfile, logout } from '../../redux/actions/userActions';
 import { useEffect, useState } from 'react';
 import Search from '../../shared/Search';
 
@@ -68,6 +67,12 @@ const SideBarPage = () => {
     const moveToProfile = () => {
         navigate(`/profile/${data?.username?.replace(/\s+/g, '').toLocaleLowerCase()}`);
     };
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    };
+
     useEffect(() => {
         dispatch(getProfile(data?._id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -240,7 +245,42 @@ const SideBarPage = () => {
                         </MenuItem>
                     </MenuList>
 
-                    <ShowMoreSidebar />
+                    {/* <ShowMoreSidebar /> */}
+                    <MenuList onClick={handleLogout}>
+                        <MenuItem
+                            sx={{
+                                padding: '12px',
+                                marginY: '8px',
+                                '&:hover': {
+                                    '& .linkIcon': {
+                                        scale: '1.05'
+                                    },
+                                    borderRadius: '24px',
+                                    background: 'rgb(250,250,250)'
+                                }
+                            }}
+                        >
+                            <LogoutIcon />
+                            <ListItemText
+                                sx={
+                                    showSearch
+                                        ? {
+                                              paddingLeft: '16px',
+                                              display: 'none'
+                                          }
+                                        : {
+                                              paddingLeft: '16px',
+                                              display: {
+                                                  xs: 'none',
+                                                  smallSidebar: 'block'
+                                              }
+                                          }
+                                }
+                            >
+                                Log out
+                            </ListItemText>
+                        </MenuItem>
+                    </MenuList>
                 </Box>
             </Box>
 

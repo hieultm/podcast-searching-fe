@@ -48,6 +48,14 @@ const DetailPodcast = () => {
         setExpanded(!expanded);
     };
 
+    const goToProfileUser = (idUser: string) => {
+        if (idUser === data._id) {
+            navigate(`/profile/${idUser}`);
+        } else {
+            navigate(`/user/${idUser}`);
+        }
+    };
+
     useEffect(() => {
         dispatch(getDetailPodcast(params));
         dispatch(getUserCommentPost(params));
@@ -174,7 +182,7 @@ const DetailPodcast = () => {
                                                         sx={{
                                                             cursor: 'pointer'
                                                         }}
-                                                        onClick={() => navigate(`/user/${dataPodcast.user._id}`)}
+                                                        onClick={() => goToProfileUser(dataPodcast.user._id)}
                                                     >
                                                         <Avatar sx={{ width: 40, height: 40 }} src={dataPodcast.user.avatar} />
                                                     </Box>
@@ -186,7 +194,7 @@ const DetailPodcast = () => {
                                                             cursor: 'pointer',
                                                             width: '50%'
                                                         }}
-                                                        onClick={() => navigate(`/user/${dataPodcast.user._id}`)}
+                                                        onClick={() => goToProfileUser(dataPodcast.user._id)}
                                                     >
                                                         <Typography
                                                             sx={{

@@ -1,9 +1,6 @@
-import { Box, Button, Divider, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, Typography, CircularProgress } from '@mui/material';
 import colors from '../../../styles/colors';
 import AuthInput from '../../shared/AuthInput';
-
-import { GoogleLogin } from 'react-google-login';
-import GoogleButton from 'react-google-button';
 
 // form
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -67,25 +64,6 @@ const LoginForm = () => {
             navigate('/home');
         }
     }, [userInfo, navigate]);
-
-    // const handleLoginGG = async (googleData: any) => {
-    //     console.log(googleData);
-    //     // const { data } = await axios({
-    //     //     method: 'POST',
-    //     //     url: '/auth/google',
-    //     //     data: { tokenId: googleData.tokenId },
-    //     //     headers: {
-    //     //         'Content-Type': 'application/json'
-    //     //     }
-    //     // });
-
-    //     // localStorage.setItem('userInfo', JSON.stringify(data));
-    //     // window.location.href = '/manage';
-    // };
-
-    // const handleFailureGG = (res: any) => {
-    //     console.log(res);
-    // };
 
     return (
         <form
@@ -162,51 +140,6 @@ const LoginForm = () => {
                     Email or Password are incorrect! Please try again
                 </Typography>
             )}
-            {/* <Box
-                sx={{
-                    width: '80%',
-                    marginTop: '12px',
-                    marginBottom: '18px',
-                    position: 'relative'
-                }}
-            >
-                <Divider />
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        zIndex: 10,
-
-                        backgroundColor: `${colors.white}`,
-                        padding: '0 6px',
-                        right: '45%',
-                        top: '-10px'
-                    }}
-                >
-                    <Typography
-                        sx={{
-                            color: 'myCustomTheme.main',
-                            fontWeight: ' 500'
-                        }}
-                        variant="body2"
-                    >
-                        OR
-                    </Typography>
-                </Box>
-            </Box>
-            <Box
-                sx={{
-                    marginTop: '6px',
-                    marginBottom: '12px'
-                }}
-            >
-                <GoogleLogin
-                    clientId="435548077713-e3ucpctn2c3tes7rfg3vgi86l6lpv4sb.apps.googleusercontent.com"
-                    onSuccess={handleLoginGG}
-                    onFailure={handleFailureGG}
-                    cookiePolicy={'single_host_origin'}
-                    render={(renderProps) => <GoogleButton onClick={renderProps.onClick} />}
-                />
-            </Box> */}
 
             <Typography
                 variant="body2"
