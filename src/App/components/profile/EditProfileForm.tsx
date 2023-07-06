@@ -63,19 +63,39 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                 <Box
                     sx={{
                         display: 'flex',
-                        width: '100%',
+                        width: {
+                            xs: '90%',
+                            sm: '100%'
+                        },
                         minHeight: '30px',
-                        marginBottom: '20px'
+                        marginBottom: '20px',
+                        flexDirection: {
+                            xs: 'column',
+                            sm: 'row'
+                        }
                     }}
                 >
                     <Box
                         sx={{
-                            paddingLeft: '32px',
+                            paddingLeft: {
+                                xs: '20px',
+                                sm: '32px'
+                            },
                             paddingRight: '32px',
-                            textAlign: 'right',
+                            textAlign: {
+                                xs: 'left',
+                                sm: 'right'
+                            },
                             display: 'flex',
                             alignItems: 'center',
-                            flexBasis: '120px'
+                            flexBasis: {
+                                xs: 'none',
+                                sm: '120px'
+                            },
+                            marginBottom: {
+                                xs: '10px',
+                                sm: 0
+                            }
                         }}
                         component="span"
                     >
@@ -92,6 +112,10 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                     <Box
                         sx={{
                             paddingRight: '30px',
+                            paddingLeft: {
+                                xs: '20px',
+                                sm: 0
+                            },
                             flex: '1'
                         }}
                     >
@@ -108,19 +132,39 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                 <Box
                     sx={{
                         display: 'flex',
-                        width: '100%',
+                        width: {
+                            xs: '90%',
+                            sm: '100%'
+                        },
                         minHeight: '30px',
-                        marginBottom: '20px'
+                        marginBottom: '20px',
+                        flexDirection: {
+                            xs: 'column',
+                            sm: 'row'
+                        }
                     }}
                 >
                     <Box
                         sx={{
-                            paddingLeft: '32px',
+                            paddingLeft: {
+                                xs: '20px',
+                                sm: '32px'
+                            },
                             paddingRight: '32px',
-                            textAlign: 'right',
+                            textAlign: {
+                                xs: 'left',
+                                sm: 'right'
+                            },
                             display: 'flex',
                             alignItems: 'center',
-                            flexBasis: '120px'
+                            flexBasis: {
+                                xs: 'none',
+                                sm: '120px'
+                            },
+                            marginBottom: {
+                                xs: '10px',
+                                sm: 0
+                            }
                         }}
                         component="span"
                     >
@@ -137,6 +181,10 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                     <Box
                         sx={{
                             paddingRight: '30px',
+                            paddingLeft: {
+                                xs: '20px',
+                                sm: 0
+                            },
                             flex: '1'
                         }}
                     >
@@ -166,7 +214,10 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                             fontWeight: '600',
                             color: `${colors.normalText}`,
                             marginBottom: '12px',
-                            marginLeft: '60px'
+                            marginLeft: {
+                                xs: '20px',
+                                sm: '60px'
+                            }
                         }}
                     >
                         Avatar Image
@@ -174,7 +225,11 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
 
                     <Box
                         sx={{
-                            display: 'flex'
+                            display: 'flex',
+                            flexDirection: {
+                                xs: 'column',
+                                sm: 'row'
+                            }
                         }}
                     >
                         <Box
@@ -183,8 +238,14 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                                 paddingRight: '32px',
                                 display: 'flex',
                                 alignItems: 'center',
-                                flexBasis: '120px',
-                                justifyContent: 'flex-end'
+                                justifyContent: {
+                                    xs: 'center',
+                                    sm: 'flex-end'
+                                },
+                                flexBasis: {
+                                    xs: 'none',
+                                    sm: '120px'
+                                }
                             }}
                         >
                             <Button
@@ -209,10 +270,21 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                             sx={{
                                 color: `${colors.normalText}`,
                                 marginBottom: '6px',
-                                paddingLeft: '20px',
-                                paddingRight: '20px',
-                                marginTop: '6px',
-                                width: '60%'
+                                // paddingLeft: '20px',
+                                // paddingRight: '20px',
+                                paddingX: {
+                                    xs: 0,
+                                    sm: '20px'
+                                },
+                                marginTop: {
+                                    xs: '16px',
+                                    sm: '6px'
+                                },
+                                width: { xs: '100%', sm: '60%' },
+                                textAlign: {
+                                    xs: 'center',
+                                    sm: 'none'
+                                }
                             }}
                         >
                             {avtName}
@@ -224,7 +296,10 @@ const EditProfileForm: FC<Props> = ({ username, email, userId }) => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        marginTop: '20px'
+                        marginTop: {
+                            xs: '0',
+                            sm: '20px'
+                        }
                     }}
                 >
                     <Button

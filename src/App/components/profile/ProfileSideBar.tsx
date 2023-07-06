@@ -19,7 +19,11 @@ const ProfileSideBar: FC<Props> = ({ menuName }) => {
                 borderRightColor: 'myCustomTheme.main',
                 borderRightStyle: 'solid',
                 paddingTop: 0,
-                flexBasis: '236px'
+                flexBasis: '236px',
+                display: {
+                    xs: 'none',
+                    md: 'block'
+                }
             }}
         >
             {listNameMenu.map(({ nameList }) => (

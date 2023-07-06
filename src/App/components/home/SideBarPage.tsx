@@ -107,6 +107,7 @@ const SideBarPage = () => {
                               borderRightWidth: '1px',
                               borderRightColor: 'rgba(0,0,0,0.2)',
                               borderRightStyle: 'solid',
+                              backgroundColor: 'white',
                               display: {
                                   xs: 'none',
                                   md: 'flex'
@@ -124,6 +125,7 @@ const SideBarPage = () => {
                               },
                               height: '100vh',
                               position: 'fixed',
+                              backgroundColor: 'white',
                               borderRightWidth: '1px',
                               borderRightColor: 'rgba(0,0,0,0.2)',
                               borderRightStyle: 'solid',
@@ -245,7 +247,6 @@ const SideBarPage = () => {
                         </MenuItem>
                     </MenuList>
 
-                    {/* <ShowMoreSidebar /> */}
                     <MenuList onClick={handleLogout}>
                         <MenuItem
                             sx={{

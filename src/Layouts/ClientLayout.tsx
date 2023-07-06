@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { FC } from 'react';
 import SideBarPage from '../App/components/home/SideBarPage';
 import UploadForm from '../App/shared/UploadForm';
+import SideBarMobile from '../App/components/home/SideBarMobile';
 
 interface Props {
     children: React.ReactNode;
@@ -44,6 +45,7 @@ const ClientLayout: FC<Props> = ({ children }) => {
                 {children}
             </Box>
             <UploadForm />
+            <SideBarMobile />
         </Box>
     );
 };

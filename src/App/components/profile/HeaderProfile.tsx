@@ -20,98 +20,113 @@ export interface contentButton {
 
 const HeaderProfile: FC<Props> = ({ avatar, username, listButton, followingCount, followerCount, isFollowing, isFetching, postCount }) => {
     return (
-        <Box
-            component="header"
-            sx={{
-                padding: '30px 20px 0px',
-                marginBottom: '16px'
-            }}
-        >
+        <>
             <Box
+                component="header"
                 sx={{
-                    display: 'flex'
+                    padding: '30px 20px 0px',
+                    marginBottom: '16px'
                 }}
             >
                 <Box
                     sx={{
-                        display: 'flex',
-                        marginRight: '30px',
-                        flexGrow: 1,
-                        justifyContent: 'center'
-                    }}
-                >
-                    <Avatar src={avatar} sx={{ width: 150, height: 150 }} />
-                </Box>
-                <Box
-                    component="section"
-                    sx={{
-                        flexGrow: 2
+                        display: 'flex'
                     }}
                 >
                     <Box
                         sx={{
                             display: 'flex',
-                            alignItems: 'center'
+                            marginRight: {
+                                xs: '10px',
+                                sm: '30px'
+                            },
+                            flexGrow: 1,
+                            justifyContent: 'center'
                         }}
                     >
-                        <Typography
-                            variant="h6"
-                            component="h2"
-                            sx={{
-                                color: `${colors.normalText}`
-                            }}
-                        >
-                            {username}
-                        </Typography>
-                        {listButton.map((item) => (
-                            <Button
-                                variant="contained"
-                                type="submit"
-                                sx={
-                                    isFollowing
-                                        ? {
-                                              marginLeft: '20px',
-                                              backgroundColor: `${colors.btnEditProfile}`,
-                                              textTransform: 'capitalize',
-                                              color: 'black',
-                                              ':hover': {
-                                                  backgroundColor: 'myCustomTheme.main'
-                                              }
-                                          }
-                                        : {
-                                              marginLeft: '20px',
-                                              backgroundColor: `${colors.btnUpload}`,
-                                              textTransform: 'capitalize',
-                                              color: 'white',
-                                              ':hover': {
-                                                  backgroundColor: `${colors.btnUploadHover}`
-                                              }
-                                          }
-                                }
-                                onClick={item.handleEvent}
-                                key={item.label}
-                            >
-                                {isFetching ? <CircularProgress color="success" size={22} /> : item.label}
-                            </Button>
-                        ))}
+                        <Avatar src={avatar} sx={{ width: 150, height: 150 }} />
                     </Box>
                     <Box
+                        component="section"
                         sx={{
-                            marginBottom: '20px'
-                        }}
-                    ></Box>
-                    <Box
-                        sx={{
-                            display: 'flex'
+                            flexGrow: 2
                         }}
                     >
-                        <Typography
-                            variant="body1"
-                            component="span"
+                        <Box
                             sx={{
-                                color: `${colors.normalText}`,
-                                marginRight: '40px',
-                                cursor: 'pointer'
+                                display: 'flex',
+                                alignItems: {
+                                    xs: 'start',
+                                    sm: 'center'
+                                },
+                                flexDirection: {
+                                    xs: 'column',
+                                    sm: 'row'
+                                }
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                component="h2"
+                                sx={{
+                                    color: `${colors.normalText}`,
+                                    marginBottom: {
+                                        xs: '12px',
+                                        sm: 0
+                                    }
+                                }}
+                            >
+                                {username}
+                            </Typography>
+                            {listButton.map((item) => (
+                                <Button
+                                    variant="contained"
+                                    type="submit"
+                                    sx={
+                                        isFollowing
+                                            ? {
+                                                  marginLeft: {
+                                                      xs: '0',
+                                                      sm: '20px'
+                                                  },
+                                                  backgroundColor: `${colors.btnEditProfile}`,
+                                                  textTransform: 'capitalize',
+                                                  color: 'black',
+                                                  ':hover': {
+                                                      backgroundColor: 'myCustomTheme.main'
+                                                  }
+                                              }
+                                            : {
+                                                  marginLeft: {
+                                                      xs: '0',
+                                                      sm: '20px'
+                                                  },
+                                                  backgroundColor: `${colors.btnUpload}`,
+                                                  textTransform: 'capitalize',
+                                                  color: 'white',
+                                                  ':hover': {
+                                                      backgroundColor: `${colors.btnUploadHover}`
+                                                  }
+                                              }
+                                    }
+                                    onClick={item.handleEvent}
+                                    key={item.label}
+                                >
+                                    {isFetching ? <CircularProgress color="success" size={22} /> : item.label}
+                                </Button>
+                            ))}
+                        </Box>
+                        <Box
+                            sx={{
+                                marginBottom: '20px'
+                            }}
+                        ></Box>
+                        <Box
+                            sx={{
+                                display: {
+                                    xs: 'none',
+                                    sm: 'flex'
+                                }
                             }}
                         >
                             <Typography
@@ -119,62 +134,160 @@ const HeaderProfile: FC<Props> = ({ avatar, username, listButton, followingCount
                                 component="span"
                                 sx={{
                                     color: `${colors.normalText}`,
-                                    fontWeight: '700',
-                                    marginRight: '4px'
+                                    marginRight: '40px',
+                                    cursor: 'pointer'
                                 }}
                             >
-                                {postCount}
+                                <Typography
+                                    variant="body1"
+                                    component="span"
+                                    sx={{
+                                        color: `${colors.normalText}`,
+                                        fontWeight: '700',
+                                        marginRight: '4px'
+                                    }}
+                                >
+                                    {postCount}
+                                </Typography>
+                                post
                             </Typography>
-                            post
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            component="span"
-                            sx={{
-                                color: `${colors.normalText}`,
-                                marginRight: '40px',
-                                cursor: 'pointer'
-                            }}
-                        >
                             <Typography
                                 variant="body1"
                                 component="span"
                                 sx={{
                                     color: `${colors.normalText}`,
-                                    fontWeight: '700',
-                                    marginRight: '4px'
+                                    marginRight: '40px',
+                                    cursor: 'pointer'
                                 }}
                             >
-                                {followerCount}
+                                <Typography
+                                    variant="body1"
+                                    component="span"
+                                    sx={{
+                                        color: `${colors.normalText}`,
+                                        fontWeight: '700',
+                                        marginRight: '4px'
+                                    }}
+                                >
+                                    {followerCount}
+                                </Typography>
+                                followers
                             </Typography>
-                            followers
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            component="span"
-                            sx={{
-                                color: `${colors.normalText}`,
-                                marginRight: '40px',
-                                cursor: 'pointer'
-                            }}
-                        >
                             <Typography
                                 variant="body1"
                                 component="span"
                                 sx={{
                                     color: `${colors.normalText}`,
-                                    fontWeight: '700',
-                                    marginRight: '4px'
+                                    marginRight: '40px',
+                                    cursor: 'pointer'
                                 }}
                             >
-                                {followingCount}
+                                <Typography
+                                    variant="body1"
+                                    component="span"
+                                    sx={{
+                                        color: `${colors.normalText}`,
+                                        fontWeight: '700',
+                                        marginRight: '4px'
+                                    }}
+                                >
+                                    {followingCount}
+                                </Typography>
+                                following
                             </Typography>
-                            following
-                        </Typography>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
-        </Box>
+
+            <Box
+                sx={{
+                    borderTopWidth: '1px',
+                    borderTopStyle: 'solid',
+                    borderTopColor: 'myCustomTheme.main',
+                    display: {
+                        xs: 'block',
+                        sm: 'none'
+                    }
+                }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        width: '100%',
+                        justifyContent: 'space-around',
+                        margin: '10px 12px'
+                    }}
+                >
+                    <Typography
+                        variant="body2"
+                        component="span"
+                        sx={{
+                            color: `${colors.secondaryText}`,
+                            cursor: 'pointer',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                            component="span"
+                            sx={{
+                                color: `${colors.normalText}`,
+                                fontWeight: '700'
+                            }}
+                        >
+                            {postCount}
+                        </Typography>
+                        <br />
+                        post
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        component="span"
+                        sx={{
+                            color: `${colors.secondaryText}`,
+                            cursor: 'pointer',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                            component="span"
+                            sx={{
+                                color: `${colors.normalText}`,
+                                fontWeight: '700'
+                            }}
+                        >
+                            {followerCount}
+                        </Typography>
+                        <br />
+                        followers
+                    </Typography>
+                    <Typography
+                        variant="body2"
+                        component="span"
+                        sx={{
+                            color: `${colors.secondaryText}`,
+                            cursor: 'pointer',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                            component="span"
+                            sx={{
+                                color: `${colors.normalText}`,
+                                fontWeight: '700'
+                            }}
+                        >
+                            {followingCount}
+                        </Typography>
+                        <br />
+                        following
+                    </Typography>
+                </Box>
+            </Box>
+        </>
     );
 };
 
